@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock  %}
+{% block title %}{% endblock  %}
+{% block body %}
+<div class="container profile col-lg-8" align="center">
+	<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+		{{userfrom.as_p}}
+        {{profrom.as_p}}
+		<button type="submit" class="btn btn-info w-100">Update</button>
+	</form>
+</div>
+{% endblock  %}

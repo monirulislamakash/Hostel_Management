@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock  %}
+{% block title %}{% endblock  %}
+{% block body %}
+    <table class="table table-dark table-striped container">
+            <thead>
+                <tr>
+                    <th scope="col">Meal Name</th>
+                    <th scope="col">Meal ID</th>
+                    <th scope="col">Meal Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <form method="POST" action="{% url 'panelhead' %}">
+                {% csrf_token %}
+                    <td > <input name="name" value={{name}}>      {{name}}</td>
+                    <td > <input name="id" value={{id}}>      {{id}}</td>
+                    <td > <input name="price" value={{price}}>    {{price}}</td>
+                    <td > <input name="Quantity" value={{Quantity}}>      {{Quantity}}</td>
+                    
+                </tr>
+                
+                    
+            </tbody>
+            </table>
+                <div class="form-check form-switch" style="width:50%; margin:0 auto;">
+                       <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                
+                </form>
+{% endblock  %}
