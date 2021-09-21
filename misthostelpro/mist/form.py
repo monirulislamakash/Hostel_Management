@@ -1,5 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models.base import Model
+from django.forms.models import ModelForm
 from .models import *
 class UserForm(forms.ModelForm):
     class Meta:
@@ -28,3 +30,8 @@ class ProForm(forms.ModelForm):
             "Gender":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
             "Emediate_Gauedion_Numer":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
         }
+
+class Avalavel(forms.ModelForm):
+    class Meta:
+        model=Afternoon_Meal
+        fields=["Available"]

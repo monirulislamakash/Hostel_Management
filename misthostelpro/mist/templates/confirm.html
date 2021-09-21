@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr>
-                <form method="POST" action="{% url 'panelhead' %}">
+                <form method="POST" action="{% url 'mealorder' %}">
                 {% csrf_token %}
                     <td > <input name="name" value={{name}}>      {{name}}</td>
                     <td > <input name="id" value={{id}}>      {{id}}</td>
