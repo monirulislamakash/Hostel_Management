@@ -13,4 +13,6 @@ urlpatterns = [
     path('updateprofile',views.updateprofile,name="updateprofile" ),
     path('singup/', views.singup,name="singup"),
     path('mealorder/', views.mealorder,name="mealorder"),
+    path('delete/<int:id>/',views.delete,name="delete" ),
+    path('mealhiostry/', views.mealhiostry,name="mealhiostry"),
 ]

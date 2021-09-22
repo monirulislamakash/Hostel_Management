@@ -12,10 +12,14 @@ def index(request):
         morinig_meal=Morning_Meal.objects.all()
         afternoon_meal=Afternoon_Meal.objects.all()
         denar_meal=Denar_Meal.objects.all()
+        appstortitel=Meal_Order.objects.filter(Name__icontains=request.user)
+        
+        appstor=appstortitel
         sendv={
             "morning":morinig_meal,
             "afternoon":afternoon_meal,
-            "denar":denar_meal
+            "denar":denar_meal,
+            "todyfood":appstor,
         }
         return render(request,"index.html",sendv)
     return redirect(login)
@@ -193,9 +197,24 @@ def updateprofile(request):
         return redirect(login)
 
 def panelhed(request):
-    allorder=Meal_Order.objects.all()
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.all()
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
 
+def delete(request,id):
+    if request.method=="POST":
+        pk=Meal_Order.objects.get(pk=id)
+        pk.delete()
+        return redirect(panelhed)
+def mealhiostry(request):
+    allmeal=All_Meal_Order.objects.filter(Name__icontains=request.user)
     sendvar={
-        "meal":allorder,
+        "allmeal":allmeal
     }
-    return render(request,"panelhed.html",sendvar)
+    return render(request,"allmeal.html",sendvar)

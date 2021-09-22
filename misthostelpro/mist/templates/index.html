@@ -1,8 +1,89 @@
 {% extends 'base.html' %}
-{% block head %}{% endblock  %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock  %}
 {% block title %}{% endblock  %}
 {% block body %}
+    <div class="Dashbord mt-3">
+        <a href="{{request.user.profilupdate.Image.url}}"><img src="{{request.user.profilupdate.Image.url}}" class="profile_Pic"></a>
+        <h4 align="center">{{request.user.first_name}} {{request.user.last_name}}</h4>
+        <h4 align="center">৳ :{{request.user.profilupdate.MealBill}} TK</h4>
+
+        <table class="dashtable">
+        <tr>
+            <td><h6 class="num">Room Number : </h6></td>
+            <td>{{request.user.profilupdate.Room_Number}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Bed Number : </h6></td>
+            <td>{{request.user.profilupdate.Bed_Number}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Number : </h6></td>
+            <td> {{request.user.profilupdate.Numer}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Class Roll : </h6></td>
+            <td>{{request.user.profilupdate.Class_Roll}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Father name : </h6></td>
+            <td>{{request.user.profilupdate.Father_name}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Blord Group : </h6></td>
+            <td>{{request.user.profilupdate.Blord_Group}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Address : </h6></td>
+            <td>{{request.user.profilupdate.Address}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Parents Number : </h6></td>
+            <td>{{request.user.profilupdate.Parents_number}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Date of Barth : </h6></td>
+            <td>{{request.user.profilupdate.Date_of_Barth}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Gender : </h6></td>
+            <td>{{request.user.profilupdate.Gender}}</td>
+        </tr>
+        <tr>
+            <td><h6 class="num">Emediate_Gauedion_Numer : </h6></td>
+            <td>{{request.user.profilupdate.Emediate_Gauedion_Numer}}</td>
+        </tr>
+    </table>
+    </diV>
+
+    <div class="todaymeal mt-3">
+    <h3 align="center">My Today Meals</h3>
+        <table class="table table-dark table-striped container">
+            <thead>
+                <tr>
+                    <th scope="col">Meal Name</th>
+                    <th scope="col">Meal Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for i in todyfood %}
+                <tr>
+                    <td>{{i.Food_Name}}</td>
+                    <td>{{i.Price}}</td>
+                    <td>{{i.Quantity}}</td>
+                    <td>{{i.Date_Time}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
     <div class="mul_meal container mt-3">
+    <h3 align="center">Today Meals</h3>
     <div class="alert alert-primary" role="alert">
         <h3 align="center">For Break First</h3>
     </div>
@@ -27,7 +108,7 @@
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
                         <div class="form-check form-switch">
-                            <button type="submit" class="btn btn-primary">Order</button>
+                            <button type="submit" class="btn btn-success"><ion-icon name="bag-check-outline"></ion-icon></button>
                         </div>
                     </td>
                 </form>
@@ -59,7 +140,7 @@
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
                         <div class="form-check form-switch">
-                            <button type="submit" class="btn btn-primary">Order</button>
+                            <button type="submit" class="btn btn-success"><ion-icon name="bag-check-outline"></ion-icon></button>
                         </div>
                     </td>
                 </form>
@@ -92,7 +173,7 @@
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
                         <div class="form-check form-switch">
-                            <button type="submit" class="btn btn-primary">Order</button>
+                            <button type="submit" class="btn btn-success"><ion-icon name="bag-check-outline"></ion-icon></button>
                         </div>
                     </td>
                 </form>
