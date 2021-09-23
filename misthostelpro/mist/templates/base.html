@@ -29,16 +29,26 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'panelhead' %}">Meal Manager</a>
-                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Meal Manager
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'hostelmeal1' %}">Hostel No:1</a></li>
+                    <li><a class="dropdown-item" href="{% url 'hostelmeal2' %}">Hostel No:2</a></li>
+                    <li><a class="dropdown-item" href="{% url 'hostelmeal3' %}">Hostel No:3</a></li>
+                    <li><a class="dropdown-item" href="{% url 'hostelmeal4' %}">Hostel No:4</a></li>
+                    <li><a class="dropdown-item" href="{% url 'hostelmeal5' %}">Hostel No:5</a></li>
+                    <li><a class="dropdown-item" href="{% url 'hostelmeal6' %}">Hostel No:6</a></li>
+                    
+                </ul>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     User Area
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                    <li><a class="dropdown-item" href="">Setting</a></li>
+                    <li><a class="dropdown-item" href="">Support</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                     
                 </ul>

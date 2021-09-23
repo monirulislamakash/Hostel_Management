@@ -41,3 +41,25 @@
 	height: 100vh;
 	display:inline-block;
 }
+@media only screen and (max-width:768px){
+	.Dashbord{
+		width:100%;
+		height: auto;
+	}
+	.dashtable{
+		width: auto;
+		display: block;
+		margin:0 auto;
+		text-align: center;
+	}
+	.mul_meal{
+		width:100%;
+		height:auto;
+		display: block;
+		margin: 0 auto;
+	}
+	.todaymeal{
+		width:100%;
+		height: auto;
+	}
+}

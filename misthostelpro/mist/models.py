@@ -29,6 +29,7 @@ class Denar_Meal(models.Model):
 class Meal_Order(models.Model):
     id=models.AutoField(primary_key=True)
     Name=models.CharField(max_length=50,default="")
+    Hostel=models.CharField(max_length=13,default=1)
     Food_Name=models.CharField(max_length=50,default="")
     Food_ID=models.CharField(max_length=50,default="")
     Price=models.CharField(max_length=50,default="")
@@ -38,6 +39,7 @@ class Meal_Order(models.Model):
         return str(self.Name)
 class ProfilUpdate(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    Hostel=models.CharField(max_length=13,default=1)
     Image=models.ImageField(upload_to="static/profile/pic/",default="static/profile/avatar.png")
     Numer=models.TextField(default="Enter Phone Number")
     Room_Number=models.CharField(max_length=10,default="00")

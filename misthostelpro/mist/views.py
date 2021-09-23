@@ -46,7 +46,7 @@ def mealorder(request):
     Odate=str(date.today())
     print(Oname,Oprice,Oqun,Oid,Odate)
     if request.method=="POST":
-        order=Meal_Order(Name=request.user,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
+        order=Meal_Order(Name=request.user,Hostel=request.user.profilupdate.Hostel,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
         allorder=All_Meal_Order(Name=request.user,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
         order.save()
         allorder.save()
@@ -218,3 +218,80 @@ def mealhiostry(request):
         "allmeal":allmeal
     }
     return render(request,"allmeal.html",sendvar)
+#hostel##################################
+def hostelmeal1(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.filter(Hostel=1)
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
+#hostel##################################
+def hostelmeal2(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.filter(Hostel=2)
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
+#hostel##################################
+def hostelmeal3(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.filter(Hostel=3)
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
+#hostel##################################
+def hostelmeal4(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.filter(Hostel=4)
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
+#hostel##################################
+def hostelmeal5(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.filter(Hostel=5)
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
+#hostel##################################
+def hostelmeal6(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.filter(Hostel=6)
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
+#hostel##################################
+def hostelmeal7(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            allorder=Meal_Order.objects.filter(Hostel=7)
+            sendvar={
+                "meal":allorder,
+            }
+            return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
