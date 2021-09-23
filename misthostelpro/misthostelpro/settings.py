@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-r6yw%y!c*fs3@rcm_qrzldijgx@94m(gqrc19d^b_xf_8jug^2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["misthostel.herokuapp.com"]
 
 
 # Application definition
@@ -139,8 +139,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-
-STATIC_ROOT = "/var/www/example.com/static/"
 STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-django_heroku.settings(locals())
