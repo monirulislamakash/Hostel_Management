@@ -6,9 +6,33 @@
 {% block title %}{% endblock  %}
 {% block body %}
     <div class="searce">
-         
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form method="POST" action="{% url 'hostelmealsearch' %}" class="d-flex ms-auto">
+                {% csrf_token %}
+                <select name="searchhost" class="form-select" aria-label="Default select example">
+                    <option selected>Select Hostel</option>
+                    <option value="1">Hostel No:1</option>
+                    <option value="2">Hostel No:2</option>
+                    <option value="3">Hostel No:3</option>
+                    <option value="4">Hostel No:4</option>
+                    <option value="5">Hostel No:5</option>
+                    <option value="6">Hostel No:6</option>
+                    <option value="7">Hostel No:7</option>
+                </select>
+                <select name="searchmel" class="form-select" aria-label="Default select example">
+                    {% for i in meal %}
+                        <option value="{{i.Food_Name}}" >{{i.Food_Name}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            </div>
+        </div>
+        </nav>
     </div>
-    <table class="table table-dark table-striped container">
+    <table class="table table-dark table-striped container mt-3">
             <thead>
                 <tr>
                     <th scope="col">User Name</th>

@@ -65,3 +65,6 @@ class All_Meal_Order(models.Model):
     Date_Time=models.CharField(max_length=50,default="")
     def __str__(self):
         return str(self.Name)
+class Notice(models.Model):
+    Titel=models.CharField(max_length=50,default="")
+    Body=models.TextField()

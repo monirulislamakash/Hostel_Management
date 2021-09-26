@@ -5,6 +5,9 @@
 {% endblock  %}
 {% block title %}{% endblock  %}
 {% block body %}
+<marquee class="notice">
+        {{titel}}
+</marquee>
     <div class="Dashbord mt-3">
         <a href="{{request.user.profilupdate.Image.url}}"><img src="{{request.user.profilupdate.Image.url}}" class="profile_Pic"></a>
         <h4 align="center">{{request.user.first_name}} {{request.user.last_name}}</h4>
@@ -108,9 +111,11 @@
                     <td>{{i.Available}}</td>
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
+                    {% if  i.Available > "0" %}
                         <div class="form-check form-switch">
                             <button type="submit" class="btn btn-success"><ion-icon name="bag-check-outline"></ion-icon></button>
                         </div>
+                    {% endif %}
                     </td>
                 </form>
                 </tr>
@@ -140,9 +145,11 @@
                     <td>{{i.Available}}</td>
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
+                    {% if  i.Available > "0" %}
                         <div class="form-check form-switch">
                             <button type="submit" class="btn btn-success"><ion-icon name="bag-check-outline"></ion-icon></button>
                         </div>
+                    {% endif %}
                     </td>
                 </form>
                 </tr>
@@ -173,9 +180,11 @@
                     <td>{{i.Available}}</td>
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
+                    {% if  i.Available > "0" %}
                         <div class="form-check form-switch">
                             <button type="submit" class="btn btn-success"><ion-icon name="bag-check-outline"></ion-icon></button>
                         </div>
+                    {% endif %}
                     </td>
                 </form>
                 </tr>

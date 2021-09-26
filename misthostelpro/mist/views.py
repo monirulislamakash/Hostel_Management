@@ -10,19 +10,23 @@ from .form import *
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        morinig_meal=Morning_Meal.objects.all()
-        afternoon_meal=Afternoon_Meal.objects.all()
-        denar_meal=Denar_Meal.objects.all()
-        appstortitel=Meal_Order.objects.filter(Name__icontains=request.user)
-        
-        appstor=appstortitel
-        sendv={
-            "morning":morinig_meal,
-            "afternoon":afternoon_meal,
-            "denar":denar_meal,
-            "todyfood":appstor,
-        }
-        return render(request,"index.html",sendv)
+        if int(request.user.profilupdate.MealBill) > 0:
+            morinig_meal=Morning_Meal.objects.all()
+            afternoon_meal=Afternoon_Meal.objects.all()
+            denar_meal=Denar_Meal.objects.all()
+            appstortitel=Meal_Order.objects.filter(Name__icontains=request.user)
+            notice=Notice.objects.all()
+            for i in notice:
+                titel=i.Titel
+            appstor=appstortitel
+            sendv={
+                "morning":morinig_meal,
+                "afternoon":afternoon_meal,
+                "denar":denar_meal,
+                "todyfood":appstor,
+                'titel':titel
+            }
+            return render(request,"index.html",sendv)
     return redirect(login)
 
 def login(request):
@@ -294,5 +298,24 @@ def hostelmeal7(request):
                 "meal":allorder,
             }
             return render(request,"panelhed.html",sendvar)
+        return redirect(index)
+    return redirect(login)
+
+def hostelmealsearch(request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            if request.method=="POST":
+                search=request.POST.get("searchmel")
+                searchhoste=request.POST.get("searchhost")
+                appstortitel=Meal_Order.objects.filter(Food_Name__icontains=search,Hostel__icontains=searchhoste)
+                appstor=appstortitel
+                countsiam=0
+                for i in appstor:
+                    countsiam +=int(i.Quantity)
+                sendvar={
+                'apppost':appstor,
+                "countsiam":countsiam,
+                }
+                return render(request,"serchmeal.html",sendvar)
         return redirect(index)
     return redirect(login)

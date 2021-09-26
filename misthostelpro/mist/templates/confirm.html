@@ -18,10 +18,10 @@
                 <tr>
                 <form method="POST" action="{% url 'mealorder' %}">
                 {% csrf_token %}
-                    <td > <input name="name" value={{name}}>      {{name}}</td>
-                    <td > <input name="id" value={{id}}>      {{id}}</td>
-                    <td > <input name="price" value={{price}}>    {{price}}</td>
-                    <td > <input name="Quantity" value={{Quantity}}>      {{Quantity}}</td>
+                    <td > <input style="display:none;" name="name" value={{name}}>      {{name}}</td>
+                    <td > <input style="display:none;" name="id" value={{id}}>      {{id}}</td>
+                    <td > <input style="display:none;" name="price" value={{price}}>    {{price}}</td>
+                    <td > <input style="display:none;" name="Quantity" value={{Quantity}}>      {{Quantity}}</td>
                     
                 </tr>
                 
