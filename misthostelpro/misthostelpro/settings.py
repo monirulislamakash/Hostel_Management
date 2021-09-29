@@ -13,11 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 import os 
-import django_heroku
-import dj_database_url
-from decouple import Config
 
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +28,7 @@ SECRET_KEY = 'django-insecure-r6yw%y!c*fs3@rcm_qrzldijgx@94m(gqrc19d^b_xf_8jug^2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["misthostel.herokuapp.com"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -139,6 +135,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-django_heroku.settings(locals())

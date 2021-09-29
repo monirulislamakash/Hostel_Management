@@ -9,6 +9,12 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form method="POST" action="{% url 'mealsearch' %}" class="d-flex">
+                {% csrf_token %}
+                <input name="findman" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+    <!--###################-->
             <form method="POST" action="{% url 'hostelmealsearch' %}" class="d-flex ms-auto">
                 {% csrf_token %}
                 <select name="searchhost" class="form-select" aria-label="Default select example">

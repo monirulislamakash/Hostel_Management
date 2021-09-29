@@ -5,9 +5,11 @@
 {% endblock  %}
 {% block title %}{% endblock  %}
 {% block body %}
-<marquee class="notice">
+<a href="{% url 'notice' %}">
+    <marquee class="notice">
         {{titel}}
-</marquee>
+    </marquee>
+</a>
     <div class="Dashbord mt-3">
         <a href="{{request.user.profilupdate.Image.url}}"><img src="{{request.user.profilupdate.Image.url}}" class="profile_Pic"></a>
         <h4 align="center">{{request.user.first_name}} {{request.user.last_name}}</h4>

@@ -10,7 +10,7 @@ from .form import *
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        if int(request.user.profilupdate.MealBill) > 0:
+        if int(request.user.profilupdate.MealBill) > 0 or request.user.profilupdate.permission=="ok":
             morinig_meal=Morning_Meal.objects.all()
             afternoon_meal=Afternoon_Meal.objects.all()
             denar_meal=Denar_Meal.objects.all()
@@ -319,3 +319,19 @@ def hostelmealsearch(request):
                 return render(request,"serchmeal.html",sendvar)
         return redirect(index)
     return redirect(login)
+
+def mealsearch(request):
+    if request.method=="POST":
+        search=request.POST.get("findman")
+        findman=Meal_Order.objects.filter(Name__icontains=search)
+        sendvar={
+            "find":findman
+                }
+    return render(request,"findman.html",sendvar)
+
+def notice(request):
+    notice=Notice.objects.get()
+    sendvar={
+        'notice':notice
+    }
+    return render(request,"notice.html",sendvar)
