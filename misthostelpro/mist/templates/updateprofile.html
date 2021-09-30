@@ -5,7 +5,8 @@
 {% endblock  %}
 {% block title %}{% endblock  %}
 {% block body %}
-<div class="container profile col-lg-8" align="center">
+<div class="container col-lg-5 mt-3 pb-3 border border-#999 fcolor">
+	<h1 class="h2 mt-3 mb-3 fcolor" align="center">Update Profile</h1>
 	<form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 		{{userfrom.as_p}}

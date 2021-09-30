@@ -12,23 +12,25 @@ class UserForm(forms.ModelForm):
             "last_name":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
             "email":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
         }
+
+
         
 class ProForm(forms.ModelForm):
     class Meta:
         model=ProfilUpdate
-        fields=["Image","Numer","Room_Number","Father_name","Class_Roll","Bed_Number","Blord_Group","Address","Parents_number","Date_of_Barth","Gender","Emediate_Gauedion_Numer"]
+        fields=["Image","Numer","Father_name","Class_Roll","Bed_Number","Blord_Group","Address","Parents_number","Date_of_Barth","Gender","Emediate_Gauedion_Numer"]
         widgets={
-            "Numer":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Room_Number":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Father_name":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Class_Roll":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Bed_Number":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Blord_Group":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Address":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Parents_number":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Date_of_Barth":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Gender":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
-            "Emediate_Gauedion_Numer":forms.TextInput(attrs={"class":"form-control col-lg-3"}),
+            "Image":forms.FileInput(attrs={"class":"form-control"}),
+            "Numer":forms.TextInput(attrs={"class":"form-control"}),
+            "Father_name":forms.TextInput(attrs={"class":"form-control"}),
+            "Class_Roll":forms.TextInput(attrs={"class":"form-control"}),
+            "Bed_Number":forms.TextInput(attrs={"class":"form-control"}),
+            "Blord_Group":forms.Select(attrs={"class":"form-control"}),
+            "Address":forms.TextInput(attrs={"class":"form-control"}),
+            "Parents_number":forms.TextInput(attrs={"class":"form-control"}),
+            "Date_of_Barth":forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
+            "Gender":forms.Select(attrs={"class":"form-control"}),
+            "Emediate_Gauedion_Numer":forms.TextInput(attrs={"class":"form-control"}),
         }
 
 class Avalavel(forms.ModelForm):

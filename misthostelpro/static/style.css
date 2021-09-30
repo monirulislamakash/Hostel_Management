@@ -44,6 +44,9 @@
 .confirminput{
 	display:none;
 }
+.Profile_def{
+	display: none !important;
+}
 @media only screen and (max-width:768px){
 	.Dashbord{
 		width:100%;
@@ -53,7 +56,17 @@
 		width: auto;
 		display: block;
 		margin:0 auto;
-		text-align: center;
+	}
+	.desh_pro_pc{
+		display:none;
+	}
+	.Profile_def{
+		display: block !important;
+		text-align: center !important;
+		background-color: #066706 !important;
+	}
+	.Profile_def:focus{
+		outline: none;
 	}
 	.mul_meal{
 		width:100%;
@@ -64,5 +77,15 @@
 	.todaymeal{
 		width:100%;
 		height: auto;
+	}
+	.mel_head{
+		margin-top: 0px;
+		margin-bottom:0px;
+		height: auto;
+		padding:0px;
+		padding:5px;
+	}
+	.tablemobilewidth{
+		width: 100%;
 	}
 }

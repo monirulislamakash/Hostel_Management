@@ -11,11 +11,12 @@ urlpatterns = [
     path('confirmdener/<int:id>/',views.confirmdener,name="confirmdener"),
     path('profile/',views.profile,name="profile"),
     path('updateprofile',views.updateprofile,name="updateprofile" ),
-    path('chologurtajay/', views.singup,name="singup"),
+    path('singup/', views.singup,name="singup"),
     path('mealorder/', views.mealorder,name="mealorder"),
     path('delete/<int:id>/',views.delete,name="delete" ),
     path('mealhiostry/', views.mealhiostry,name="mealhiostry"),
     path('hostelmealsearch/', views.hostelmealsearch,name="hostelmealsearch"),
     path('mealsearch/', views.mealsearch,name="mealsearch"),
     path('notice/', views.notice,name="notice"),
+    path('billnotice/', views.billnotice,name="billnotice"),
 ]

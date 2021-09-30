@@ -6,18 +6,23 @@
 {% block title %}{% endblock  %}
 {% block body %}
     <table class="table table-dark table-striped container">
+            {% if dabulalart %}
+                mama
+            {% endif %}
             <thead>
                 <tr>
+                    <th scope="col">Time</th>
                     <th scope="col">Meal Name</th>
                     <th scope="col">Meal ID</th>
-                    <th scope="col">Meal Price</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">QT.</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                 <form method="POST" action="{% url 'mealorder' %}">
                 {% csrf_token %}
+                    <td > <input style="display:none;" name="when" value={{when}}>      {{when}}</td>
                     <td > <input style="display:none;" name="name" value={{name}}>      {{name}}</td>
                     <td > <input style="display:none;" name="id" value={{id}}>      {{id}}</td>
                     <td > <input style="display:none;" name="price" value={{price}}>    {{price}}</td>

@@ -10,6 +10,7 @@ class Morning_Meal(models.Model):
     Name=models.CharField(max_length=50,default="")
     Price=models.CharField(max_length=50,default="")
     Available=models.CharField( max_length=10,default="")
+    When=models.CharField("Breakfast",max_length=30,default="breakfast")
     def __str__(self):
         return self.Name
 class Afternoon_Meal(models.Model):
@@ -17,6 +18,7 @@ class Afternoon_Meal(models.Model):
     Name=models.CharField(max_length=50,default="")
     Price=models.CharField(max_length=50,default="")
     Available=models.CharField( max_length=10,default="")
+    When=models.CharField("Lunch",max_length=30,default="Lunch")
     def __str__(self):
         return self.Name
 class Denar_Meal(models.Model):
@@ -24,6 +26,7 @@ class Denar_Meal(models.Model):
     Name=models.CharField(max_length=50,default="")
     Price=models.CharField(max_length=50,default="")
     Available=models.CharField( max_length=10,default="")
+    When=models.CharField("Dinner",max_length=30,default="Dinner")
     def __str__(self):
         return self.Name
 class Meal_Order(models.Model):
@@ -35,6 +38,7 @@ class Meal_Order(models.Model):
     Price=models.CharField(max_length=50,default="")
     Quantity=models.CharField(max_length=10,default="")
     Date_Time=models.CharField(max_length=50,default="")
+    When=models.CharField(max_length=30,default="Breakfast")
     def __str__(self):
         return str(self.Name)
 class ProfilUpdate(models.Model):
@@ -46,24 +50,38 @@ class ProfilUpdate(models.Model):
     Father_name=models.CharField(max_length=50,default="Need to Enter")
     Class_Roll=models.CharField(max_length=50,default="Need to Enter")
     Bed_Number=models.CharField(max_length=10,default="00")
-    Blord_Group=models.CharField(max_length=2,default="+-")
+    selectblord=(
+        ('A+','A+'),
+        ('A-','A-'),
+        ('B+','B+'),
+        ('B-','B-'),
+        ('AB-','AB-'),
+        ('AB+','AB+')
+        )
+    Blord_Group=models.CharField(max_length=5,choices=selectblord,default="+-")
     Address=models.CharField(max_length=300,default="Need to Enter")
     Parents_number=models.CharField(max_length=15,default="Need to Enter")
     Date_of_Barth=models.CharField(max_length=30,default="Need to Enter")
-    Gender=models.CharField(max_length=13,default="Need to Enter")
+    selectgender=(
+        ('male','Male'),
+        ('female','Female')
+        )
+    Gender=models.CharField(max_length=10,choices=selectgender,default="Male")
     Emediate_Gauedion_Numer=models.CharField(max_length=15,default="Need to Enter")
     MealBill=CharField(max_length=10,default="000")
-    permission=models.CharField(max_length=5,default="no")
+    permission=models.BooleanField(default=False)
     def __str__(self):
         return str(self.user)
 class All_Meal_Order(models.Model):
     id=models.AutoField(primary_key=True)
     Name=models.CharField(max_length=50,default="")
+    Hostel=models.CharField(max_length=13,default=1)
     Food_Name=models.CharField(max_length=50,default="")
     Food_ID=models.CharField(max_length=50,default="")
     Price=models.CharField(max_length=50,default="")
     Quantity=models.CharField(max_length=10,default="")
     Date_Time=models.CharField(max_length=50,default="")
+    When=models.CharField(max_length=30,default="breakfast")
     def __str__(self):
         return str(self.Name)
 class Notice(models.Model):

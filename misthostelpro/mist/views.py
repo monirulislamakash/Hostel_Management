@@ -10,7 +10,7 @@ from .form import *
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        if int(request.user.profilupdate.MealBill) > 0 or request.user.profilupdate.permission=="ok":
+        if int(request.user.profilupdate.MealBill) > 0 or request.user.profilupdate.permission==True:
             morinig_meal=Morning_Meal.objects.all()
             afternoon_meal=Afternoon_Meal.objects.all()
             denar_meal=Denar_Meal.objects.all()
@@ -19,14 +19,18 @@ def index(request):
             for i in notice:
                 titel=i.Titel
             appstor=appstortitel
+            for i in appstortitel:
+                date=i.Date_Time
             sendv={
                 "morning":morinig_meal,
                 "afternoon":afternoon_meal,
                 "denar":denar_meal,
                 "todyfood":appstor,
-                'titel':titel
+                'titel':titel,
+                
             }
             return render(request,"index.html",sendv)
+        return redirect(billnotice)
     return redirect(login)
 
 def login(request):
@@ -45,139 +49,161 @@ def logout(request):
     return redirect(index)
 def mealorder(request):
     Oname=request.POST.get("name")
+    Owhen=request.POST.get("when")
     Oprice=request.POST.get("price")
     Oqun=request.POST.get("Quantity")
     Oid=request.POST.get("id")
     Odate=str(date.today())
     print(Oname,Oprice,Oqun,Oid,Odate)
     if request.method=="POST":
-        order=Meal_Order(Name=request.user,Hostel=request.user.profilupdate.Hostel,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
-        allorder=All_Meal_Order(Name=request.user,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
+        order=Meal_Order(Name=request.user,When=Owhen,Hostel=request.user.profilupdate.Hostel,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
+        allorder=All_Meal_Order(Name=request.user,When=Owhen,Hostel=request.user.profilupdate.Hostel,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
         order.save()
         allorder.save()
         return redirect(index)
     return redirect(index)
 def confirm(request,id):
-    qun=request.POST.get("qun")
-    qunt=int(qun)
-    if request.method=="POST":
-        pk=Morning_Meal.objects.filter(pk=id)
-    #Price counter Meal####################
-        for i in pk:
-            name=i.Name
-            dam=i.Price
-            fid=i.id
-        price=int(dam)*qunt
-    #Available Meal####################
-        for i in pk:
-            ava=i.Available
-            aval=int(ava)-int(qunt)
-        t = Morning_Meal.objects.get(id=id)
-        t.Available = aval
-        t.save()
-    #Meal Bill################################
-        mealbillMinus=ProfilUpdate.objects.filter(user=request.user)
-        for i in mealbillMinus:
-            mealardam=i.MealBill
-            dam=int(mealardam)-int(price)
-        mealbill=ProfilUpdate.objects.get(user=request.user)
-        mealbill.MealBill = dam
-        mealbill.save()
-        send_item={
-            'name':name,
-            'id':fid,
-            "price":price,
-            "Quantity":qun
-        }
-    return render(request,"confirm.html",send_item)
+    if request.user.is_authenticated:
+        if int(request.user.profilupdate.MealBill) > 0 or request.user.profilupdate.permission==True:
+            qun=request.POST.get("qun")
+            qunt=int(qun)
+            if request.method=="POST":
+                pk=Morning_Meal.objects.filter(pk=id)
+            #Price counter Meal####################
+                for i in pk:
+                    name=i.Name
+                    dam=i.Price
+                    fid=i.id
+                    when=i.When
+                price=int(dam)*qunt
+            #Available Meal####################
+                for i in pk:
+                    ava=i.Available
+                    aval=int(ava)-int(qunt)
+                t = Morning_Meal.objects.get(id=id)
+                t.Available = aval
+                t.save()
+            #Meal Bill################################
+                mealbillMinus=ProfilUpdate.objects.filter(user=request.user)
+                for i in mealbillMinus:
+                    mealardam=i.MealBill
+                    dam=int(mealardam)-int(price)
+                mealbill=ProfilUpdate.objects.get(user=request.user)
+                mealbill.MealBill = dam
+                mealbill.save()
+                send_item={
+                    'name':name,
+                    'id':fid,
+                    "price":price,
+                    "Quantity":qun,
+                    'when':when,
+                }
+            return render(request,"confirm.html",send_item)
+        return redirect(billnotice)
+    return redirect(login)
 def confirmlunch(request,id):
-    qun=request.POST.get("qun")
-    qunt=int(qun)
-    if request.method=="POST":
-        pk=Afternoon_Meal.objects.filter(pk=id)
-    #Price counter Meal####################
-        for i in pk:
-            name=i.Name
-            dam=i.Price
-            fid=i.id
-        price=int(dam)*qunt
-    #Available Meal####################
-        for i in pk:
-            ava=i.Available
-            aval=int(ava)-int(qunt)
-        t = Afternoon_Meal.objects.get(id=id)
-        t.Available = aval
-        t.save()
-    #Meal Bill################################
-        mealbillMinus=ProfilUpdate.objects.filter(user=request.user)
-        for i in mealbillMinus:
-            mealardam=i.MealBill
-            dam=int(mealardam)-int(price)
-        mealbill=ProfilUpdate.objects.get(user=request.user)
-        mealbill.MealBill = dam
-        mealbill.save()
-        send_item={
-            'name':name,
-            'id':fid,
-            "price":price,
-            "Quantity":qun
-        }
-    return render(request,"confirm.html",send_item)
+    if request.user.is_authenticated:
+        if int(request.user.profilupdate.MealBill) > 0 or request.user.profilupdate.permission==True:
+            qun=request.POST.get("qun")
+            qunt=int(qun)
+            if request.method=="POST":
+                pk=Afternoon_Meal.objects.filter(pk=id)
+            #Price counter Meal####################
+                for i in pk:
+                    name=i.Name
+                    dam=i.Price
+                    fid=i.id
+                    when=i.When
+                price=int(dam)*qunt
+            #Available Meal####################
+                for i in pk:
+                    ava=i.Available
+                    aval=int(ava)-int(qunt)
+                t = Afternoon_Meal.objects.get(id=id)
+                t.Available = aval
+                t.save()
+            #Meal Bill################################
+                mealbillMinus=ProfilUpdate.objects.filter(user=request.user)
+                for i in mealbillMinus:
+                    mealardam=i.MealBill
+                    dam=int(mealardam)-int(price)
+                mealbill=ProfilUpdate.objects.get(user=request.user)
+                mealbill.MealBill = dam
+                mealbill.save()
+                send_item={
+                    'name':name,
+                    'id':fid,
+                    "price":price,
+                    "Quantity":qun,
+                    'when':when
+                }
+            return render(request,"confirm.html",send_item)
+        return redirect(billnotice)
+    return redirect(login)
 def confirmdener(request,id):
-    qun=request.POST.get("qun")
-    qunt=int(qun)
-    if request.method=="POST":
-        pk=Denar_Meal.objects.filter(pk=id)
-    #Price counter Meal####################
-        for i in pk:
-            name=i.Name
-            dam=i.Price
-            fid=i.id
-    #Available Meal####################
-        for i in pk:
-            ava=i.Available
-            aval=int(ava)-int(qunt)
-        t = Denar_Meal.objects.get(id=id)
-        t.Available = aval
-        t.save()
-        price=int(dam)*qunt
-        #Meal Bill################################
-        mealbillMinus=ProfilUpdate.objects.filter(user=request.user)
-        for i in mealbillMinus:
-            mealardam=i.MealBill
-            dam=int(mealardam)-int(price)
-        mealbill=ProfilUpdate.objects.get(user=request.user)
-        mealbill.MealBill = dam
-        mealbill.save()
-        send_item={
-            'name':name,
-            'id':fid,
-            "price":price,
-            "Quantity":qun
-        }
-    return render(request,"confirm.html",send_item)
-
+    if request.user.is_authenticated:
+        if int(request.user.profilupdate.MealBill) > 0 or request.user.profilupdate.permission==True:
+            qun=request.POST.get("qun")
+            qunt=int(qun)
+            if request.method=="POST":
+                pk=Denar_Meal.objects.filter(pk=id)
+            #Price counter Meal####################
+                for i in pk:
+                    name=i.Name
+                    dam=i.Price
+                    fid=i.id
+                    when=i.When
+            #Available Meal####################
+                for i in pk:
+                    ava=i.Available
+                    aval=int(ava)-int(qunt)
+                t = Denar_Meal.objects.get(id=id)
+                t.Available = aval
+                t.save()
+                price=int(dam)*qunt
+                #Meal Bill################################
+                mealbillMinus=ProfilUpdate.objects.filter(user=request.user)
+                for i in mealbillMinus:
+                    mealardam=i.MealBill
+                    dam=int(mealardam)-int(price)
+                mealbill=ProfilUpdate.objects.get(user=request.user)
+                mealbill.MealBill = dam
+                mealbill.save()
+                send_item={
+                    'name':name,
+                    'id':fid,
+                    "price":price,
+                    "Quantity":qun,
+                    "when":when
+                }
+            return render(request,"confirm.html",send_item)
+        return redirect(billnotice)
+    return redirect(login)
 
 def singup(request):
-    f_name=request.POST.get("f_name")
-    l_name=request.POST.get("l_name")
-    email=request.POST.get("email")
-    passw=request.POST.get("password")
-    cpassw=request.POST.get("confirmpassword")
-    bio=request.POST.get("bio")
-    if request.method=="POST":
-        if passw==passw:
-            try:
-                user=User.objects.get(username=email)
-                return render(request,"add.html",{'error':"User already exists"})  
-            except User.DoesNotExist:
-                user=User.objects.create_user(username=email,password=cpassw,first_name=f_name,last_name=l_name)
-                rfm=ProfilUpdate(Numer=bio)
-                rfm.save()
-                return render(request,"add.html",{'success':"user created successfully"})    
-        else:
-            return render(request,"add.html") 
-    return render(request,"add.html") 
+    if request.user.is_superuser:
+        f_name=request.POST.get("f_name")
+        l_name=request.POST.get("l_name")
+        email=request.POST.get("email")
+        passw=request.POST.get("password")
+        cpassw=request.POST.get("confirmpassword")
+        bio=request.POST.get("bio")
+        hostel=request.POST.get("hostel")
+        room=request.POST.get("room")
+        if request.method=="POST":
+            if passw==passw:
+                try:
+                    user=User.objects.get(username=email)
+                    return render(request,"add.html",{'error':"User already exists"})  
+                except User.DoesNotExist:
+                    user=User.objects.create_user(username=email,password=cpassw,first_name=f_name,last_name=l_name)
+                    rfm=ProfilUpdate(Numer=bio,Hostel=hostel,Room_Number=room)
+                    rfm.save()
+                    return render(request,"add.html",{'success':"user created successfully"})    
+            else:
+                return render(request,"add.html") 
+        return render(request,"add.html")
+    return redirect(index) 
 
 
 def profile(request):
@@ -213,10 +239,12 @@ def panelhed(request):
     return redirect(login)
 
 def delete(request,id):
-    if request.method=="POST":
-        pk=Meal_Order.objects.get(pk=id)
-        pk.delete()
-        return redirect(panelhed)
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            pk=Meal_Order.objects.get(pk=id)
+            pk.delete()
+            return redirect(panelhed)
+    return redirect(login)
 def mealhiostry(request):
     allmeal=All_Meal_Order.objects.filter(Name__icontains=request.user)
     sendvar={
@@ -335,3 +363,6 @@ def notice(request):
         'notice':notice
     }
     return render(request,"notice.html",sendvar)
+
+def billnotice(request):
+    return render(request,"billnotice.html")
