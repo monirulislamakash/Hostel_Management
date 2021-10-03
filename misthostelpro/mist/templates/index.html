@@ -38,8 +38,8 @@
             <td>: {{request.user.profilupdate.Father_name}}</td>
         </tr>
         <tr>
-            <td><h6 class="num">Blord Group </h6></td>
-            <td>: {{request.user.profilupdate.Blord_Group}}</td>
+            <td><h6 class="num">Blood Group </h6></td>
+            <td>: {{request.user.profilupdate.Blood_Group}}</td>
         </tr>
         <tr>
             <td><h6 class="num">Address </h6></td>
@@ -51,7 +51,7 @@
         </tr>
         <tr>
             <td><h6 class="num">Date of Barth </h6></td>
-            <td>: {{request.user.profilupdate.Date_of_Barth}}</td>
+            <td>: {{request.user.profilupdate.Date_of_Birth}}</td>
         </tr>
         <tr>
             <td><h6 class="num">Gender </h6></td>
@@ -101,8 +101,8 @@
                     <td>: {{request.user.profilupdate.Father_name}}</td>
                 </tr>
                 <tr>
-                    <td><h6 class="num">Blord Group </h6></td>
-                    <td>: {{request.user.profilupdate.Blord_Group}}</td>
+                    <td><h6 class="num">Blood Group </h6></td>
+                    <td>: {{request.user.profilupdate.Blood_Group}}</td>
                 </tr>
                 <tr>
                     <td><h6 class="num">Address </h6></td>
@@ -114,7 +114,7 @@
                 </tr>
                 <tr>
                     <td><h6 class="num">Date of Barth </h6></td>
-                    <td>: {{request.user.profilupdate.Date_of_Barth}}</td>
+                    <td>: {{request.user.profilupdate.Date_of_Birth}}</td>
                 </tr>
                 <tr>
                     <td><h6 class="num">Gender </h6></td>
@@ -141,7 +141,7 @@
 
     <div class="todaymeal">
     <h4 align="center">My Today's Meals ({{date}})</h4>
-        <table class="table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
+        <table class="mealtable table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
             <thead>
                 <tr>
                     <th scope="col">Item</th>
@@ -163,12 +163,15 @@
         </table>
     </div>
 
+
+    {% if current_time > '17-0-0' and current_time < '21-0-0' %}
+
     <div class="mul_meal">
     <h3 align="center">Available Items Today</h3>
     <div class="alert alert-primary mel_head" role="alert">
         <h5 align="center">Breakfast</h5>
     </div>
-            <table class="table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
+            <table class="mealtable table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
             <thead>
                 <tr>
                     <th scope="col">Meal Name</th>
@@ -204,7 +207,7 @@
     <div class="alert alert-primary mel_head" role="alert">
         <h5 align="center">Lunch</h5>
     </div>
-            <table class="table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
+            <table class="mealtable table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
             <thead>
                 <tr>
                     <th scope="col">Meal Name</th>
@@ -217,7 +220,7 @@
             <tbody>
             {% for i in afternoon %}
                <tr>
-                <form method="POST" action="{% url 'confirm' i.id %}">
+                <form method="POST" action="{% url 'confirmlunch' i.id %}">
                 {% csrf_token %}
                     <th scope="row" value="{{i.Name}}">{{i.Name}}</th>
                     <td value="{{i.Price}}">{{i.Price}}</td>
@@ -241,7 +244,7 @@
         <h5 align="center">Dinner</h5>
     </div>
         
-            <table class="table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
+            <table class="mealtable table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
             <thead>
                 <tr>
                     <th scope="col">Meal Name</th>
@@ -254,7 +257,7 @@
             <tbody>
             {% for i in denar %}
                 <tr>
-                <form method="POST" action="{% url 'confirm' i.id %}">
+                <form method="POST" action="{% url 'confirmdener' i.id %}">
                 {% csrf_token %}
                     <th scope="row" value="{{i.Name}}">{{i.Name}}</th>
                     <td value="{{i.Price}}">{{i.Price}}</td>
@@ -275,4 +278,5 @@
             </tbody>
             </table>
     </div>
+    {% endif %}
 {% endblock %}

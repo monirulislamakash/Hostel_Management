@@ -47,6 +47,12 @@
 .Profile_def{
 	display: none !important;
 }
+.login{
+	border:#ebebeb solid 0.1px;
+}
+.mealtable{
+	width: 100%;
+}
 @media only screen and (max-width:768px){
 	.Dashbord{
 		width:100%;
@@ -86,6 +92,12 @@
 		padding:5px;
 	}
 	.tablemobilewidth{
+		width: 100%;
+	}
+	.login{
+		border:none;
+	}
+	.mealtable{
 		width: 100%;
 	}
 }

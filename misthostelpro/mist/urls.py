@@ -19,4 +19,5 @@ urlpatterns = [
     path('mealsearch/', views.mealsearch,name="mealsearch"),
     path('notice/', views.notice,name="notice"),
     path('billnotice/', views.billnotice,name="billnotice"),
+    path('setting/', views.setting,name="setting"),
 ]

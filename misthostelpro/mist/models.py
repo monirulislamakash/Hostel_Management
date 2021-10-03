@@ -56,12 +56,14 @@ class ProfilUpdate(models.Model):
         ('B+','B+'),
         ('B-','B-'),
         ('AB-','AB-'),
-        ('AB+','AB+')
+        ('AB+','AB+'),
+        ('O+','O+'),
+        ('O-','O-'),
         )
-    Blord_Group=models.CharField(max_length=5,choices=selectblord,default="+-")
+    Blood_Group=models.CharField(max_length=5,choices=selectblord,default="+-")
     Address=models.CharField(max_length=300,default="Need to Enter")
     Parents_number=models.CharField(max_length=15,default="Need to Enter")
-    Date_of_Barth=models.CharField(max_length=30,default="Need to Enter")
+    Date_of_Birth=models.CharField(max_length=30,default="Need to Enter")
     selectgender=(
         ('male','Male'),
         ('female','Female')

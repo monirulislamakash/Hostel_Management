@@ -18,17 +18,17 @@ class UserForm(forms.ModelForm):
 class ProForm(forms.ModelForm):
     class Meta:
         model=ProfilUpdate
-        fields=["Image","Numer","Father_name","Class_Roll","Bed_Number","Blord_Group","Address","Parents_number","Date_of_Barth","Gender","Emediate_Gauedion_Numer"]
+        fields=["Image","Numer","Father_name","Class_Roll","Bed_Number","Blood_Group","Address","Parents_number","Date_of_Birth","Gender","Emediate_Gauedion_Numer"]
         widgets={
             "Image":forms.FileInput(attrs={"class":"form-control"}),
             "Numer":forms.TextInput(attrs={"class":"form-control"}),
             "Father_name":forms.TextInput(attrs={"class":"form-control"}),
             "Class_Roll":forms.TextInput(attrs={"class":"form-control"}),
             "Bed_Number":forms.TextInput(attrs={"class":"form-control"}),
-            "Blord_Group":forms.Select(attrs={"class":"form-control"}),
+            "Blood_Group":forms.Select(attrs={"class":"form-control"}),
             "Address":forms.TextInput(attrs={"class":"form-control"}),
             "Parents_number":forms.TextInput(attrs={"class":"form-control"}),
-            "Date_of_Barth":forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
+            "Date_of_Birth":forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
             "Gender":forms.Select(attrs={"class":"form-control"}),
             "Emediate_Gauedion_Numer":forms.TextInput(attrs={"class":"form-control"}),
         }

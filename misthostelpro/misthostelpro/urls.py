@@ -23,6 +23,6 @@ admin.site.site_title = "MIST Admin Portal"
 admin.site.index_title = "Welcome to MIST Researcher Portal"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls,name="admin"),
     path("",include("mist.urls"))
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

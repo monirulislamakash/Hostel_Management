@@ -5,8 +5,9 @@ from django.contrib import auth
 from django.contrib.auth import authenticate
 from .models import *
 from datetime import date
+from datetime import datetime
 from .form import *
-
+from pytz import timezone
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
@@ -21,12 +22,16 @@ def index(request):
             appstor=appstortitel
             for i in appstortitel:
                 date=i.Date_Time
+            now = datetime.now()
+            bd = timezone('Asia/Dhaka')
+            current_time = str(datetime.now(bd).strftime('%H-%M-%S'))
             sendv={
                 "morning":morinig_meal,
                 "afternoon":afternoon_meal,
                 "denar":denar_meal,
                 "todyfood":appstor,
                 'titel':titel,
+                "current_time":current_time
                 
             }
             return render(request,"index.html",sendv)
@@ -53,7 +58,7 @@ def mealorder(request):
     Oprice=request.POST.get("price")
     Oqun=request.POST.get("Quantity")
     Oid=request.POST.get("id")
-    Odate=str(date.today())
+    Odate=int(date.today() + datetime.timedelta(days=1))
     print(Oname,Oprice,Oqun,Oid,Odate)
     if request.method=="POST":
         order=Meal_Order(Name=request.user,When=Owhen,Hostel=request.user.profilupdate.Hostel,Food_Name=Oname,Food_ID=Oid,Price=Oprice,Quantity=Oqun,Date_Time=Odate)
@@ -366,3 +371,15 @@ def notice(request):
 
 def billnotice(request):
     return render(request,"billnotice.html")
+
+def setting(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            newpass=request.POST.get("password")
+            u = User.objects.get(username=request.user)
+            u.set_password(newpass)
+            u.save()
+            return render(request,"setting.html",{"succes":"Password Update Successfully"})
+        return render(request,"setting.html")
+    return redirect(login)
+    
