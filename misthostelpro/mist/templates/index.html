@@ -5,11 +5,14 @@
 {% endblock  %}
 {% block title %}{% endblock  %}
 {% block body %}
-<a href="{% url 'notice' %}">
-    <marquee class="notice">
-        {{titel}}
-    </marquee>
-</a>
+
+{% if titel != '' %}
+    <a href="{% url 'notice' %}">
+        <marquee class="notice">
+            {{titel}}
+        </marquee>
+    </a>
+{% endif %}
     <div class="Dashbord mt-3">
         <a href="{% url 'profile' %}"><img src="{{request.user.profilupdate.Image.url}}" class="profile_Pic"></a>
         <h4 align="center">{{request.user.first_name}} {{request.user.last_name}}</h4>
@@ -140,7 +143,7 @@
 
 
     <div class="todaymeal">
-    <h4 align="center">My Today's Meals ({{date}})</h4>
+    <h4 align="center">Meals of ({{date}})</h4>
         <table class="mealtable table table-dark table-striped" style="margin-bottom:0px; margin-top:0px;">
             <thead>
                 <tr>
@@ -164,8 +167,7 @@
     </div>
 
 
-    {% if current_time > '17-0-0' and current_time < '21-0-0' %}
-
+    
     <div class="mul_meal">
     <h3 align="center">Available Items Today</h3>
     <div class="alert alert-primary mel_head" role="alert">
@@ -175,7 +177,7 @@
             <thead>
                 <tr>
                     <th scope="col">Meal Name</th>
-                    <th scope="col">Meal Price</th>
+                    <th scope="col">Price</th>
                     <th scope="col">available</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Order</th>
@@ -186,11 +188,12 @@
                 <tr>
                 <form method="POST" action="{% url 'confirm' i.id %}">
                 {% csrf_token %}
-                    <th scope="row" value="{{i.Name}}">{{i.Name}}</th>
-                    <td value="{{i.Price}}">{{i.Price}}</td>
+                    <th scope="row"value="{{i.Name}}"><input style="display:none;" name="name" value='{{i.Name}}'>{{i.Name}}</th>
+                    <td value="{{i.Price}}"><input style="display:none;" name="price" value='{{i.Price}}'>{{i.Price}}</td>
                     <td>{{i.Available}}</td>
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
+                    <input style="display:none;" name="when" value='Breakfast'>
                     {% if  i.Available > "0" %}
                     
                         <div class="form-check form-switch">
@@ -211,7 +214,7 @@
             <thead>
                 <tr>
                     <th scope="col">Meal Name</th>
-                    <th scope="col">Meal Price</th>
+                    <th scope="col">Price</th>
                     <th scope="col">available</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Order</th>
@@ -222,11 +225,12 @@
                <tr>
                 <form method="POST" action="{% url 'confirmlunch' i.id %}">
                 {% csrf_token %}
-                    <th scope="row" value="{{i.Name}}">{{i.Name}}</th>
-                    <td value="{{i.Price}}">{{i.Price}}</td>
+                    <th scope="row"value="{{i.Name}}"><input style="display:none;" name="name" value='{{i.Name}}'>{{i.Name}}</th>
+                    <td value="{{i.Price}}"><input style="display:none;" name="price" value='{{i.Price}}'>{{i.Price}}</td>
                     <td>{{i.Available}}</td>
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
+                    <input style="display:none;" name="when" value='Lunch'>
                     {% if  i.Available > "0" %}
                     
                         <div class="form-check form-switch">
@@ -248,7 +252,7 @@
             <thead>
                 <tr>
                     <th scope="col">Meal Name</th>
-                    <th scope="col">Meal Price</th>
+                    <th scope="col">Price</th>
                     <th scope="col">available</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Order</th>
@@ -259,11 +263,12 @@
                 <tr>
                 <form method="POST" action="{% url 'confirmdener' i.id %}">
                 {% csrf_token %}
-                    <th scope="row" value="{{i.Name}}">{{i.Name}}</th>
-                    <td value="{{i.Price}}">{{i.Price}}</td>
+                    <th scope="row"value="{{i.Name}}"><input style="display:none;" name="name" value='{{i.Name}}'>{{i.Name}}</th>
+                    <td value="{{i.Price}}"><input style="display:none;" name="price" value='{{i.Price}}'>{{i.Price}}</td>
                     <td>{{i.Available}}</td>
                     <td><input type="number" name="qun" style="width:51px;" value="1"></td>
                     <td>
+                    <input style="display:none;" name="when" value='Dinner'>
                     {% if  i.Available > "0" %}
                     
                         <div class="form-check form-switch">
@@ -278,5 +283,5 @@
             </tbody>
             </table>
     </div>
-    {% endif %}
+    
 {% endblock %}

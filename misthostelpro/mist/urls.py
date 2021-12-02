@@ -6,6 +6,7 @@ urlpatterns = [
     path('login/', views.login,name="login"),
     path('logout/', views.logout,name="logout"),
     path('panelhead/', views.panelhed,name="panelhead"),
+    path('mealsheet/<int:id>', views.mealsheet,name="mealsheet"),
     path('confirm/<int:id>/',views.confirm,name="confirm"),
     path('confirmlunch/<int:id>/',views.confirmlunch,name="confirmlunch"),
     path('confirmdener/<int:id>/',views.confirmdener,name="confirmdener"),
@@ -20,4 +21,8 @@ urlpatterns = [
     path('notice/', views.notice,name="notice"),
     path('billnotice/', views.billnotice,name="billnotice"),
     path('setting/', views.setting,name="setting"),
+    path('makepayment/', views.makepayment,name="makepayment"),
+    path('paymenthistory/', views.paymenthistory,name="paymenthistory"),
+    path('Alluser/', views.Alluser,name="Alluser"),
+    path('Usersearch/', views.Usersearch,name="Usersearch"),
 ]

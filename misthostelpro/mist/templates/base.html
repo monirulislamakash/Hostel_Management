@@ -32,13 +32,30 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'panelhead' %}">Meal Manager</a>
                 </li>
+                
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Meal Sheet
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'mealsheet' 1 %}">Hostel 1</a></li>
+                    <li><a class="dropdown-item" href="{% url 'mealsheet' 2 %}">Hostel 2</a></li>
+                    <li><a class="dropdown-item" href="{% url 'mealsheet' 3 %}">Hostel 3</a></li>
+                    <li><a class="dropdown-item" href="{% url 'mealsheet' 4 %}">Hostel 4</a></li>
+                    <li><a class="dropdown-item" href="{% url 'mealsheet' 5 %}">Hostel 5</a></li>
+                    <li><a class="dropdown-item" href="{% url 'mealsheet' 6 %}">Hostel 6</a></li>
+                    <li><a class="dropdown-item" href="{% url 'mealsheet' 7 %}">Hostel 7</a></li>
+                    
+                </ul>
+                </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     User Area
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                    <li><a class="dropdown-item" href="admin/">admin</a></li>
+                    <li><a class="dropdown-item" href="{% url 'makepayment' %}">Payment</a></li>
+                    <li><a class="dropdown-item" href="{% url 'Usersearch' %}">Students</a></li>
                     <li><a class="dropdown-item" href="{% url 'singup' %}">Add User</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                     
@@ -62,6 +79,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'mealhiostry' %}">Meal History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'paymenthistory' %}">Payment History</a>
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

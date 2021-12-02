@@ -7,7 +7,11 @@
 {% block body %}
 <div class="container" align="center">
     <h3 align="center" style="margin:30px;">{{notice.Titel}}</h3>
-   <p align="center" style="margin:30px;">{{notice.Body}}</p>
+   <p align="center" style="margin:30px;">
+        {{notice.Body}}
+
+        <h6>Notice Given By :{{notice.Athor}}</h6>
+   </p>
    <a href="{% url 'home' %}"><button align="center" type="button" class="btn btn-success">Back TO Home</button></a>
 </div>
    

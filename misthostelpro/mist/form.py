@@ -37,3 +37,27 @@ class Avalavel(forms.ModelForm):
     class Meta:
         model=Afternoon_Meal
         fields=["Available"]
+class AllUser(forms.ModelForm):
+    class Meta:
+        model=ProfilUpdate
+        fields=["user","StudentName","Hostel","Image","Numer","Room_Number","Father_name","Father_profession","Class_Roll","Bed_Number","Blood_Group",'Address','Parents_number','Date_of_Birth','Gender','Emediate_Gauedion_Numer','MealBill','permission']
+        widgets={
+            "user":forms.Select(attrs={"class":"form-control"}),
+            "StudentName":forms.TextInput(attrs={"class":"form-control"}),
+            "Hostel":forms.TextInput(attrs={"class":"form-control"}),
+            "Image":forms.TextInput(attrs={"class":"form-control"}),
+            "Numer":forms.TextInput(attrs={"class":"form-control"}),
+            "Room_Number":forms.Select(attrs={"class":"form-control"}),
+            "Father_name":forms.TextInput(attrs={"class":"form-control"}),
+            "Father_profession":forms.TextInput(attrs={"class":"form-control"}),
+            "Class_Roll":forms.DateInput(attrs={'class':'form-control'}),
+            "Bed_Number":forms.Select(attrs={"class":"form-control"}),
+            "Blood_Group":forms.TextInput(attrs={"class":"form-control"}),
+            "Address":forms.TextInput(attrs={"class":"form-control"}),
+            "Parents_number":forms.TextInput(attrs={"class":"form-control"}),
+            "Date_of_Birth":forms.TextInput(attrs={"class":"form-control"}),
+            "Gender":forms.TextInput(attrs={"class":"form-control"}),
+            "Emediate_Gauedion_Numer":forms.TextInput(attrs={"class":"form-control"}),
+            "MealBill":forms.TextInput(attrs={"class":"form-control"}),
+            "permission":forms.TextInput(attrs={"class":"form-control"}),
+        }
